@@ -1,9 +1,6 @@
 #include "fft.h"
 #include <math.h>
-#include <stdint.h>
-#include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
 
 complex_q15_16 complex_add(complex_q15_16 a, complex_q15_16 b) {
   complex_q15_16 result = {a.real + b.real, a.imag + b.imag};
