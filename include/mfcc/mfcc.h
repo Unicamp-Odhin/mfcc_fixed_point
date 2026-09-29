@@ -3,8 +3,6 @@
 
 #include <stdint.h>
 
-#include "fft_fp.h"
-
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -37,7 +35,7 @@ typedef struct {
   int32_t *window;
   int frame_size;
 
-  complex_t *twiddles;
+  void *twiddles;
   int32_t **filterbank;
   int16_t max_width_mel;
 
