@@ -3,6 +3,8 @@
 
 #include <stdint.h>
 
+#include "fft_fp.h"
+
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -29,7 +31,22 @@ typedef struct {
 } mfcc_config_t;
 
 typedef struct {
+  int64_t *pre_emphasis;
+  int num_samples;
+
+  int32_t *window;
+  int frame_size;
+
+  complex_t *twiddles;
+  int32_t **filterbank;
+  int16_t max_width_mel;
+
+  int64_t **frames;
+  int64_t **hamming_frames;
+  int64_t **power_spectrum;
+  int32_t **energies;
   int32_t **coefficients;
+
   int num_frames;
   int num_ceps;
 } mfcc_result_t;

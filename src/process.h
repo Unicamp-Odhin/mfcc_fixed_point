@@ -1,5 +1,5 @@
-#include <stdint.h>
 #include <stddef.h>
+#include <stdint.h>
 
 #ifndef __PROCESS_H__
 #define __PROCESS_H__
