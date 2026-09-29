@@ -2,7 +2,10 @@
 #define MFCC_H
 
 #include <stdint.h>
+
+#include "dct.h"
 #include "fft_fp.h"
+#include "mel.h"
 
 #ifdef __cplusplus
 extern "C" {
@@ -11,9 +14,9 @@ extern "C" {
 #define MFCC_FRAME_SIZE_SEC 0.025
 #define MFCC_FRAME_STEP_SEC 0.010
 
-#define MFCC_NFFT 512
-#define MFCC_NUM_FILTERS 26
-#define MFCC_NUM_CEPS 13
+#define MFCC_NFFT         NFFT
+#define MFCC_NUM_FILTERS  NUM_FILTERS
+#define MFCC_NUM_CEPS     NUM_CEPS
 
 typedef struct {
   int F_PRE;
@@ -36,7 +39,7 @@ typedef struct {
   int32_t *window;
   int frame_size;
 
-  void *twiddles;
+  complex_t *twiddles;
   int32_t **filterbank;
   int16_t max_width_mel;
 
