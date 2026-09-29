@@ -2,6 +2,7 @@
 #define MFCC_H
 
 #include <stdint.h>
+#include "fft_fp.h"
 
 #ifdef __cplusplus
 extern "C" {
