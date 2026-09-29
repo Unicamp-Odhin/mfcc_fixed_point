@@ -7,40 +7,35 @@
 extern "C" {
 #endif
 
-#define MFCC_FRAME_SIZE_SEC  0.025
-#define MFCC_FRAME_STEP_SEC  0.010
+#define MFCC_FRAME_SIZE_SEC 0.025
+#define MFCC_FRAME_STEP_SEC 0.010
 
-#define MFCC_NFFT        512
+#define MFCC_NFFT 512
 #define MFCC_NUM_FILTERS 26
-#define MFCC_NUM_CEPS    13
+#define MFCC_NUM_CEPS 13
 
 typedef struct {
-    int F_PRE;
-    int F_HAMMING;
-    int F_FFT;
-    int F_MEL;
-    int F_DCT;
+  int F_PRE;
+  int F_HAMMING;
+  int F_FFT;
+  int F_MEL;
+  int F_DCT;
 
-    int TRUNCATE_PRE;
-    int TRUNCATE_HAMMING;
-    int TRUNCATE_FFT;
-    int TRUNCATE_MEL;
-    int TRUNCATE_DCT;
+  int TRUNCATE_PRE;
+  int TRUNCATE_HAMMING;
+  int TRUNCATE_FFT;
+  int TRUNCATE_MEL;
+  int TRUNCATE_DCT;
 } mfcc_config_t;
 
 typedef struct {
-    int32_t **coefficients;
-    int num_frames;
-    int num_ceps;
+  int32_t **coefficients;
+  int num_frames;
+  int num_ceps;
 } mfcc_result_t;
 
-int mfcc_compute(
-    const int16_t *samples,
-    int num_samples,
-    int sample_rate,
-    const mfcc_config_t *config,
-    mfcc_result_t *result
-);
+int mfcc_compute(const int16_t *samples, int num_samples, int sample_rate,
+                 const mfcc_config_t *config, mfcc_result_t *result);
 
 void mfcc_free_result(mfcc_result_t *result);
 
