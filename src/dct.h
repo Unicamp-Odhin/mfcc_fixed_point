@@ -1,3 +1,7 @@
+/*
+ * SPDX-License-Identifier: MIT
+ * Copyright (c) 2026 Vinicius P. M. Miguel
+ */
 #ifndef __DCT_H__
 #define __DCT_H__
 #include <inttypes.h>

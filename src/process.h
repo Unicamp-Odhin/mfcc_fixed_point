@@ -1,3 +1,7 @@
+/*
+ * SPDX-License-Identifier: MIT
+ * Copyright (c) 2026 Vinicius P. M. Miguel
+ */
 #include <stddef.h>
 #include <stdint.h>
 

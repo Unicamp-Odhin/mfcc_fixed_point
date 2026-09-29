@@ -1,3 +1,7 @@
+/*
+ * SPDX-License-Identifier: MIT
+ * Copyright (c) 2026 Vinicius P. M. Miguel
+ */
 #ifndef __FFT_PF_H__
 #define __FFT_PF_H__
 

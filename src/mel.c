@@ -1,3 +1,7 @@
+/*
+ * SPDX-License-Identifier: MIT
+ * Copyright (c) 2026 Vinicius P. M. Miguel
+ */
 // #include <cmath>0
 #include "mel.h"
 #include <float.h>

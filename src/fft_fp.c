@@ -1,3 +1,7 @@
+/*
+ * SPDX-License-Identifier: MIT
+ * Copyright (c) 2026 Vinicius P. M. Miguel
+ */
 #include "fft_fp.h"
 #include <inttypes.h>
 #include <stdio.h>
