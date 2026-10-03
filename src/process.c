@@ -95,6 +95,7 @@ void pre_emphasis(int16_t *samples, size_t sample_count, int64_t *samples_out,
   int32_t SCALE = 1 << F;
   int32_t ALPHA = (int32_t)(0.97 * SCALE);
 
+  samples_out[0] = 0;
   for (size_t i = sample_count - 1; i > 0; i--) {
     sample_pf = (int64_t)samples[i] << F;
     temp = (int64_t)ALPHA * (int64_t)samples[i - 1];

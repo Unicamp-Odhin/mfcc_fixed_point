@@ -134,7 +134,7 @@ void fft_real_power(int64_t *x_real, int N, int64_t *power_out,
     int64_t temp = mul_fp(x[k].real, x[k].real, F_FFT) +
                    mul_fp(x[k].imag, x[k].imag, F_FFT);
 
-    power_out[k] = (int64_t)(temp / 512); // |X[k]|^2 / 512
+    power_out[k] = (int64_t)(temp / NFFT); // |X[k]|^2 / NFFT
   }
 
   free(x);

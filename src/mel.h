@@ -7,7 +7,7 @@
 
 #include "fft_fp.h"
 
-#define NUM_FILTERS 40
+#define NUM_FILTERS 24
 
 void create_filterbank_float(float filterbank[NUM_FILTERS][NFFT / 2 + 1],
                              int sample_rate);

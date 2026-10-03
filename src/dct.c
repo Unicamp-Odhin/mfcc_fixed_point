@@ -84,10 +84,12 @@ void dct_fixed(int32_t energies[], int num_filters, int32_t ceps[NUM_CEPS],
   int32_t MEL_SCALE = 1 << ENERGIES_WIDTH_F;
   int32_t DCT_SCALE = 1 << DCT_COEFF_WIDTH_F;
 
+  
   int32_t factor0 = (int32_t)(sqrt((1.0f / num_filters)) * DCT_SCALE);
   int32_t factork = (int32_t)(sqrt((2.0f / num_filters)) * DCT_SCALE);
-
+  
   if (PRINT_FACTOR) {
+    printf("\n\n\n>>>>>>>>>>>>>> %d %d\n", num_filters, DCT_SCALE);
     printf("FACTOR0: %d\n", factor0);
     printf("FACTORk: %d\n", factork);
     PRINT_FACTOR = 0;

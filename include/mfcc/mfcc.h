@@ -15,7 +15,7 @@
 extern "C" {
 #endif
 
-#define MFCC_FRAME_SIZE_SEC 0.025
+#define MFCC_FRAME_SIZE_SEC 0.016
 #define MFCC_FRAME_STEP_SEC 0.010
 
 #define MFCC_NFFT         NFFT
