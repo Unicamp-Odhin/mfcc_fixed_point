@@ -229,6 +229,7 @@ int mfcc_compute(const int16_t *samples, int num_samples, int sample_rate,
   output->coefficients = ceps;
   output->num_frames = num_frames;
   output->num_ceps = MFCC_NUM_CEPS;
+  output->twiddles = twiddles;
 
   return 0;
 }

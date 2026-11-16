@@ -131,10 +131,21 @@ void fft_real_power(int64_t *x_real, int N, int64_t *power_out,
 
   for (int k = 0; k <= NFFT / 2; k++) {
 
-    int64_t temp = mul_fp(x[k].real, x[k].real, F_FFT) +
-                   mul_fp(x[k].imag, x[k].imag, F_FFT);
+      int64_t re_sq = mul_fp(x[k].real, x[k].real, F_FFT);
+      int64_t im_sq = mul_fp(x[k].imag, x[k].imag, F_FFT);
+      int64_t temp  = re_sq + im_sq;
+      int64_t power = (int64_t)(temp / 512);
 
-    power_out[k] = (int64_t)(temp / 512); // |X[k]|^2 / 512
+      printf("[%3d] re=%016llX im=%016llX re2=%016llX im2=%016llX sum=%016llX pwr=%016llX\n",
+            k,
+            (unsigned long long)(uint64_t)x[k].real,
+            (unsigned long long)(uint64_t)x[k].imag,
+            (unsigned long long)(uint64_t)re_sq,
+            (unsigned long long)(uint64_t)im_sq,
+            (unsigned long long)(uint64_t)temp,
+            (unsigned long long)(uint64_t)power);
+
+      power_out[k] = power;
   }
 
   free(x);
