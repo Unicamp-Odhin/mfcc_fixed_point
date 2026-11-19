@@ -85,7 +85,20 @@ int mfcc_compute(const int16_t *samples, int num_samples, int sample_rate,
   output->filterbank = filterbank;
   output->max_width_mel = max_width_mel;
 
-  init_cos_lut(config->F_DCT);
+  int32_t **cos_lut = malloc(NUM_CEPS * sizeof(int32_t *));
+  for (int i = 0; i < NUM_CEPS; i++)
+    cos_lut[i] = malloc(NUM_FILTERS * sizeof(int32_t));
+
+  if (!cos_lut) {
+    free(samples_64bit);
+    free(window);
+    free(twiddles);
+    free(cos_lut);
+    return -1;
+  }
+
+  init_cos_lut(cos_lut, config->F_DCT);
+  output->cos_lut = cos_lut;
 
   // FRAMES
   int64_t **frames = frame_signal_int(samples_64bit, num_samples, frame_size,
@@ -212,7 +225,7 @@ int mfcc_compute(const int16_t *samples, int num_samples, int sample_rate,
     }
 
     // DCT
-    dct_fixed(energies[i], MFCC_NUM_FILTERS, ceps[i], 16, config->F_DCT);
+    dct_fixed(cos_lut, energies[i], MFCC_NUM_FILTERS, ceps[i], 16, config->F_DCT);
 
     if (config->TRUNCATE_DCT) {
 

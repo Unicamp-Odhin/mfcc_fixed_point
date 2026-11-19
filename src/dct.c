@@ -7,8 +7,6 @@
 #include <math.h>
 #include <stdio.h>
 
-static int32_t cos_lut[NUM_CEPS][NUM_FILTERS];
-
 int64_t mul_fp__(int64_t a, int64_t b, int F) {
   __int128 temp = (__int128)a * (__int128)b;
 
@@ -27,23 +25,9 @@ int64_t mul_fp__(int64_t a, int64_t b, int F) {
   return (int64_t)temp;
 }
 
-void save_cos_lut(const char *filename) {
-  FILE *fp = fopen(filename, "w");
-  if (!fp) {
-    perror("fopen");
-    return;
-  }
-
-  for (int k = 0; k < NUM_CEPS; k++)
-    for (int n = 0; n < NUM_FILTERS; n++)
-      fprintf(fp, "%08" PRIx32 "\n", (uint32_t)cos_lut[k][n]);
-
-  fclose(fp);
-}
-
 // LUT para cosseno: precompute cos(pi * (n + 0.5) * k / num_filters) em ponto
 // fixo
-void init_cos_lut(int DCT_COEFF_WIDTH_F) {
+void init_cos_lut(int32_t** cos_lut, int DCT_COEFF_WIDTH_F) {
   int32_t DCT_SCALE = 1 << DCT_COEFF_WIDTH_F;
 
   for (int k = 0; k < NUM_CEPS; k++) {
@@ -79,7 +63,7 @@ void dct(float energies[], int num_filters, float ceps[NUM_CEPS]) {
 
 int PRINT_FACTOR = 1;
 
-void dct_fixed(int32_t energies[], int num_filters, int32_t ceps[NUM_CEPS],
+void dct_fixed(int32_t** cos_lut, int32_t energies[], int num_filters, int32_t ceps[NUM_CEPS],
                int ENERGIES_WIDTH_F, int DCT_COEFF_WIDTH_F) {
   int32_t MEL_SCALE = 1 << ENERGIES_WIDTH_F;
   int32_t DCT_SCALE = 1 << DCT_COEFF_WIDTH_F;

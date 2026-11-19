@@ -45,6 +45,7 @@ typedef struct {
 
   complex_t *twiddles;
   int32_t **filterbank;
+  int32_t **cos_lut;
   int16_t max_width_mel;
 
   int64_t **frames;
