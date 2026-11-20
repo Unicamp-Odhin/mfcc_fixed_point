@@ -83,7 +83,7 @@ int mfcc_compute(const int16_t *samples, int num_samples, int sample_rate,
       create_op_filterbank(filterbank, sample_rate, config->F_MEL);
 
   output->filterbank = filterbank;
-  output->max_width_mel = max_width_mel;
+  output->max_width_mel = max_width_mel + 1;
 
   int32_t **cos_lut = malloc(NUM_CEPS * sizeof(int32_t *));
   for (int i = 0; i < NUM_CEPS; i++)
