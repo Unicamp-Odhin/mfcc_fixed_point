@@ -266,6 +266,9 @@ int16_t create_op_filterbank(int32_t **filterbank_op, int sample_rate, int F) {
       filterbank_op[i][k++] = 0;
     }
   }
+  printf("\n\n>>>>MUDAR O RTL, NOVO TAMANHO DE MEMÓRIA<<<<<\n");
+  printf("MEL_BANK_SIZE=%d\n\n", max_size + 1);
+
   return max_size;
 }
 
@@ -312,8 +315,6 @@ void apply_op_filterbank(int64_t power_spectrum_frame[NFFT / 2 + 1],
     if (sum <= 0) {
       energies[i] = MIN_LOG_ENERGY;
     } else {
-      // int32_t temp = (20.0 * 0.301029996 * SCALE) * log2_int((int32_t)(sum >>
-      // MEL_COEFF_WIDTH_F));
       int64_t log_sum = log2_fp(sum, MEL_COEFF_WIDTH_F);
       if (MEL_COEFF_WIDTH_F > ENERGIES_WIDTH_F)
         log_sum = log_sum >> (MEL_COEFF_WIDTH_F - ENERGIES_WIDTH_F);

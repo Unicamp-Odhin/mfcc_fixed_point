@@ -52,7 +52,6 @@ $(info [INFO] CFLAGS: $(CFLAGS))
 LIB_SOURCES = \
     $(SRC_DIR)/mfcc.c \
     $(SRC_DIR)/dct.c \
-    $(SRC_DIR)/fft.c \
     $(SRC_DIR)/fft_fp.c \
     $(SRC_DIR)/mel.c \
     $(SRC_DIR)/process.c

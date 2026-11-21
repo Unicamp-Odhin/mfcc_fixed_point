@@ -8,7 +8,6 @@
 #include "mfcc/mfcc.h"
 
 #include "dct.h"
-#include "fft.h"
 #include "fft_fp.h"
 #include "mel.h"
 #include "process.h"

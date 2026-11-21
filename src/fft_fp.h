@@ -10,7 +10,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-#define NFFT 256
+#define NFFT 1024
 
 #ifndef M_PI
 #define M_PI 3.14159265358979323846

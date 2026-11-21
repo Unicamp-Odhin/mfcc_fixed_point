@@ -72,8 +72,9 @@ void dct_fixed(int32_t** cos_lut, int32_t energies[], int num_filters, int32_t c
   int32_t factork = (int32_t)(sqrt((2.0f / num_filters)) * DCT_SCALE);
 
   if (PRINT_FACTOR) {
+    printf("\n\n>>>>MUDAR O RTL, NOVAS CONSTANTES<<<<<\n");
     printf("FACTOR0: %d\n", factor0);
-    printf("FACTORk: %d\n", factork);
+    printf("FACTORk: %d\n\n", factork);
     PRINT_FACTOR = 0;
   }
 

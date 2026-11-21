@@ -89,22 +89,43 @@ void fft_iterative(complex_t *x, int N, complex_t *twiddles, int F) {
 
   // Iterative FFT
   for (int s = 1; s <= logN; s++) {
-    int m = 1 << s;
-    int half_m = m >> 1;
-    int twiddle_step = N / m;
+      int m = 1 << s;
+      int half_m = m >> 1;
+      int twiddle_step = N / m;
 
-    for (int k = 0; k < N; k += m) {
-      for (int j = 0; j < half_m; j++) {
-        int twiddle_index = j * twiddle_step;
-        complex_t t =
-            complex_mul(twiddles[twiddle_index], x[k + j + half_m], F);
-        complex_t u = x[k + j];
+      for (int k = 0; k < N; k += m) {
+          for (int j = 0; j < half_m; j++) {
+              int twiddle_index = j * twiddle_step;
+              
+              // Operandos de entrada
+              complex_t t_in = x[k + j + half_m];
+              complex_t u = x[k + j];
+              complex_t tw = twiddles[twiddle_index];
 
-        x[k + j] = complex_add(u, t);
-        x[k + j + half_m] = complex_sub(u, t);
+              complex_t t = complex_mul(tw, t_in, F);
+              
+              // Resultados
+              complex_t out1 = complex_add(u, t);
+              complex_t out2 = complex_sub(u, t);
+
+              x[k + j] = out1;
+              x[k + j + half_m] = out2;
+              
+              // PRINT DE DEPURAÇÃO (Uma linha por butterfly)
+              // Formato: s,k,j | twiddle (re,im) | u (re,im) | t_in (re,im) | t (re,im) | out1 (re,im) | out2 (re,im)
+              // printf("m=%d k=%d j=%d | tw[%d]=0x%016llx,0x%016llx | u=0x%016llx,0x%016llx | t_in=0x%016llx,0x%016llx | t=0x%016llx,0x%016llx | out1=0x%016llx,0x%016llx | out2=0x%016llx,0x%016llx\n",
+              //       m, k, j,
+              //       twiddle_index,
+              //       (unsigned long long)tw.real, (unsigned long long)tw.imag,
+              //       (unsigned long long)u.real, (unsigned long long)u.imag,
+              //       (unsigned long long)t_in.real, (unsigned long long)t_in.imag,
+              //       (unsigned long long)t.real, (unsigned long long)t.imag,
+              //       (unsigned long long)out1.real, (unsigned long long)out1.imag,
+              //       (unsigned long long)out2.real, (unsigned long long)out2.imag);
+          }
       }
-    }
   }
+  // printf("\n\n");
 }
 
 void fft_real_power(int64_t *x_real, int N, int64_t *power_out,
@@ -137,7 +158,14 @@ void fft_real_power(int64_t *x_real, int N, int64_t *power_out,
       int64_t power = (int64_t)(temp / NFFT);
 
       power_out[k] = power;
+
+      // printf("%016llx,%016llx,%016llx\n", 
+      //   (unsigned long long)x[k].real,
+      //   (unsigned long long)x[k].imag,
+      //   (unsigned long long)power);
   }
+
+  // printf("\n\n");
 
   free(x);
 }
