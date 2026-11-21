@@ -6,7 +6,7 @@
 #define __DCT_H__
 #include <inttypes.h>
 
-#define NUM_CEPS 12
+#include "mfcc/params.h"
 #ifndef M_PI
 #define M_PI 3.14159265358979323846
 #endif // !M_PI

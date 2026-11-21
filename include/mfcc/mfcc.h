@@ -10,13 +10,11 @@
 #include "dct.h"
 #include "fft_fp.h"
 #include "mel.h"
+#include "mfcc/params.h"
 
 #ifdef __cplusplus
 extern "C" {
 #endif
-
-#define MFCC_FRAME_SIZE_SEC 0.025
-#define MFCC_FRAME_STEP_SEC 0.010
 
 #define MFCC_NFFT         NFFT
 #define MFCC_NUM_FILTERS  NUM_FILTERS

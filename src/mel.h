@@ -6,8 +6,7 @@
 #define __MEL_H__
 
 #include "fft_fp.h"
-
-#define NUM_FILTERS 40
+#include "mfcc/params.h"
 
 void create_filterbank_float(float filterbank[NUM_FILTERS][NFFT / 2 + 1],
                              int sample_rate);

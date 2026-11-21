@@ -213,7 +213,7 @@ int mfcc_compute(const int16_t *samples, int num_samples, int sample_rate,
 
     // MEL
     apply_op_filterbank(power_spectrum[i], energies[i], sample_rate, filterbank,
-                        config->F_MEL, 16, config->F_FFT);
+                        config->F_MEL, config->F_MEL, config->F_FFT);
 
     if (config->TRUNCATE_MEL) {
 
@@ -224,7 +224,7 @@ int mfcc_compute(const int16_t *samples, int num_samples, int sample_rate,
     }
 
     // DCT
-    dct_fixed(cos_lut, energies[i], MFCC_NUM_FILTERS, ceps[i], 16, config->F_DCT);
+    dct_fixed(cos_lut, energies[i], MFCC_NUM_FILTERS, ceps[i], config->F_MEL, config->F_DCT);
 
     if (config->TRUNCATE_DCT) {
 
